@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Proposta de Namoro</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f8ff;
+            flex-direction: column;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 2.5em;
+            color: #333;
+        }
+
+        .button-container {
+            margin-top: 20px;
+        }
+
+        .button-container button {
+            font-size: 1.2em;
+            padding: 15px 30px;
+            margin: 10px;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+            transition: 0.3s;
+        }
+
+        .yes-button {
+            background-color: #28a745;
+            color: white;
+        }
+
+        .no-button {
+            background-color: #dc3545;
+            color: white;
+        }
+
+        .no-button.disappear {
+            display: none;
+        }
+
+        .message {
+            margin-top: 20px;
+            font-size: 1.2em;
+            color: red;
+            display: none;
+        }
+
+        /* Modal Styles */
+        .modal {
+            display: none; /* Hidden by default */
+            position: fixed;
+            z-index: 10;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.5);
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+
+        .modal-content h2 {
+            margin: 0;
+            font-size: 1.8em;
+            color: #333;
+        }
+
+        .close-btn {
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .close-btn:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <h1>Quer namorar comigo, Maria?</h1>
+
+    <div class="button-container">
+        <button class="yes-button" id="yesButton">Sim</button>
+        <button class="no-button" id="noButton">Não</button>
+    </div>
+
+    <div class="message" id="message">Não possui essa opção.</div>
+
+    <!-- Modal -->
+    <div class="modal" id="loveModal">
+        <div class="modal-content">
+            <h2>Já estamos namorando bobinha!</h2>
+            <button class="close-btn" id="closeModal">Fechar</button>
+        </div>
+    </div>
+
+    <script>
+        const noButton = document.getElementById('noButton');
+        const message = document.getElementById('message');
+        const yesButton = document.getElementById('yesButton');
+        const modal = document.getElementById('loveModal');
+        const closeModal = document.getElementById('closeModal');
+
+        noButton.addEventListener('click', function() {
+            noButton.classList.add('disappear');
+            message.style.display = 'block';
+        });
+
+        yesButton.addEventListener('click', function() {
+            modal.style.display = 'flex';
+        });
+
+        closeModal.addEventListener('click', function() {
+            modal.style.display = 'none';
+        });
+
+        // Opcional: Fechar modal ao clicar fora do conteúdo
+        window.addEventListener('click', function(event) {
+            if (event.target === modal) {
+                modal.style.display = 'none';
+            }
+        });
+    </script>
+</body>
+</html>
